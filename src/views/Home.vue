@@ -2,7 +2,7 @@
   <div class="home">
     <b-container>
       <b-button v-on:click="logOut">logout</b-button>
-      <div v-if="$store.state.loggedIn">
+      <div v-if="loggedIn">
        you are logged in !
        </div>
       <b-row>
@@ -43,19 +43,15 @@ export default {
   computed: {
   console: () => console,
   window: () => window,
-  //  loggedIn () {
-  //     return !!localStorage.getItem('jwt')
-  //   }
+   loggedIn () {
+      return this.$store.state.loggedIn;
+    }
 },
 
   methods: {
-     loggedIn () {
-      return !!localStorage.getItem('jwt')
-    },
+     
     logOut(){
-      // this.console.log("hit")
-      // this.$store.commit('logOut')
-      localStorage.removeItem('jwt')
+      this.$store.commit('logOut')
     },
     onSubmit(event) {
       event.preventDefault();
@@ -78,6 +74,7 @@ export default {
             localStorage.setItem('jwt',response.data.token)
             localStorage.setItem('user',JSON.stringify(response.data.u))
             this.$router.push('/user');
+            this.$store.commit('logIn')
           } else {
             console.log("failure");
           }

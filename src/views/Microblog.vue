@@ -3,7 +3,7 @@
     <b-row>
     <b-col>
     <h1>Posts</h1>
-    <b-button id="show-btn" @click="$bvModal.show('bv-modal-example')"
+    <b-button v-if="loggedIn" id="show-btn" @click="$bvModal.show('bv-modal-example')"
         >new post</b-button
       >
       
@@ -67,6 +67,12 @@ export default {
       URL : 'http://localhost:3000/api/blog',
       tok : localStorage.getItem('jwt')
     };
+  },
+
+  computed : {
+    loggedIn() {
+      return this.$store.state.loggedIn
+    }
   },
 
   mounted() {

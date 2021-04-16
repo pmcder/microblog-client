@@ -22,14 +22,18 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     loggedIn: !(!localStorage.getItem('jwt'))
-  }//,
-  // mutations:{
-  //   logOut(state){
-  //     localStorage.removeItem('jwt')
-  //     this.state.loggedIn = false
-  //     console.log(state.loggedIn)
-  //   }
-  // }
+  },
+  mutations:{
+    logOut(state){
+      localStorage.removeItem('jwt')
+      state.loggedIn = false
+      
+    },
+    logIn(state){
+      state.loggedIn = true
+      
+    }
+  }
 })
 
 new Vue({
