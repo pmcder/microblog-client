@@ -75,8 +75,8 @@ export default {
             localStorage.setItem('user',JSON.stringify(response.data.u))
             this.$router.push('/user');
             this.$store.commit('logIn')
-          } else {
-            console.log("failure");
+          } if (response.status == 401) {
+            console.log("incorrect username or password");
           }
         },
         (error) => {
