@@ -2,14 +2,16 @@
   <div class="about">
     Welcome {{ user.firstName }} !
 
-    <ul v-for="i in user.notifications" v-bind:key="i">
-      <li>i</li>
-    </ul>
+    <div v-for="i in notifications" v-bind:key="i">
+      <notification :message="i.message"></notification>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import notification from '../components/notification.vue'
+
 export default {
   data() {
     return {
@@ -20,9 +22,13 @@ export default {
   mounted(){
     
     axios
-    .get('http://localhost:3000/api/notifications',
+    .get("http://localhost:3000/api/notifications",
     {params:{user:this.user.userName}})
     .then((response)=> (this.notifications=response.data))
+    
+  },
+  components : {
+    notification
   }
 
 };

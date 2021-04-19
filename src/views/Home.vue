@@ -4,6 +4,7 @@
       <b-button v-on:click="logOut">logout</b-button>
       <div v-if="loggedIn">
        you are logged in !
+       <router-link to="/user">user page</router-link>
        </div>
       <b-row>
        
