@@ -1,10 +1,13 @@
 <template>
   <div class="home">
     <b-container>
-      <b-button v-on:click="logOut">logout</b-button>
+     
       <div v-if="loggedIn">
-       you are logged in !
-       <router-link to="/user">user page</router-link>
+       you are logged in ! |
+       <router-link to="/user"> user page</router-link>
+       <div>
+        <b-button v-on:click="logOut">logout</b-button>
+       </div>
        </div>
       <b-row>
        

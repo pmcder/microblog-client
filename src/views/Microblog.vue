@@ -6,7 +6,9 @@
     <b-button v-if="loggedIn" id="show-btn" @click="$bvModal.show('bv-modal-example')"
         >new post</b-button
       >
-      
+    <div v-if="!loggedIn">
+      Please log in to post and reply.
+    </div>
     </b-col>
     <b-col>
     <div v-for="i in info" v-bind:key="i">

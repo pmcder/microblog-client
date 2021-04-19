@@ -11,7 +11,7 @@
     </div>
     <!--a href="#" class="btn btn-primary">Go somewhere</a-->
     <div class="card-footer" >
-        <b-button id="show-btn" @click="$bvModal.show('reply-modal')">add reply</b-button>
+        <b-button v-if="loggedIn" id="show-btn" @click="$bvModal.show('reply-modal')">add reply</b-button>
       </div>
   </div>
 </div>
@@ -35,6 +35,11 @@ export default {
         params : {postId : this.$props.postId}
       })
       .then((response) => (this.replies = response.data));
+  },
+    computed : {
+    loggedIn() {
+      return this.$store.state.loggedIn
+    }
   },
 }
 </script>
